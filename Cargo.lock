@@ -501,7 +501,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "cargo-color"
+name = "cargo-color-gen"
 version = "0.0.1"
 dependencies = [
  "anyhow",

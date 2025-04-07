@@ -1,5 +1,5 @@
 use anyhow::Result;
-use cargo_color::{Args, handle_args};
+use cargo_color_gen::{Args, handle_args};
 use clap::Parser;
 
 fn main() -> Result<()> {
