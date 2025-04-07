@@ -1,6 +1,6 @@
 use anyhow::Result;
+use cargo_color::{Args, handle_args};
 use clap::Parser;
-use color_gen::{Args, handle_args};
 
 fn main() -> Result<()> {
     let args = Args::parse();

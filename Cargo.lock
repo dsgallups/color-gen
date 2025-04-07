@@ -501,6 +501,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "cargo-color"
+version = "0.0.1"
+dependencies = [
+ "anyhow",
+ "bevy",
+ "clap",
+ "fnv",
+ "prettyplease",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_json",
+ "syn",
+]
+
+[[package]]
 name = "cc"
 version = "1.2.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -580,22 +596,6 @@ name = "clap_lex"
 version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
-
-[[package]]
-name = "color-gen"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "bevy",
- "clap",
- "fnv",
- "prettyplease",
- "proc-macro2",
- "quote",
- "serde",
- "serde_json",
- "syn",
-]
 
 [[package]]
 name = "colorchoice"
