@@ -68,7 +68,6 @@ pub fn handle_args(args: Args) -> Result<()> {
 
 pub fn generate(input: String) -> Result<String> {
     let val: TailwindMap = serde_json::from_str(input.trim())?;
-    println!("here");
     let header = quote! {
         /// Generated using `color-gen` v0.1
 
@@ -76,9 +75,6 @@ pub fn generate(input: String) -> Result<String> {
     };
 
     let token_colors = val.to_token_colors();
-    //.into_iter()
-    //.map(|color| quote! {#color})
-    //.collect::<Vec<_>>();
 
     let output = quote! {
         #header
@@ -89,6 +85,5 @@ pub fn generate(input: String) -> Result<String> {
     let file = syn::parse_file(&output.to_string())?;
     let result = prettyplease::unparse(&file);
 
-    //output.
     Ok(result)
 }

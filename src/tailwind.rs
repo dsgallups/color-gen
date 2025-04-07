@@ -53,8 +53,8 @@ impl TailwindColor {
     pub fn to_token_colors<'a>(&'a self, color_name: &'a str) -> Vec<TokenColor<'a>> {
         let mut colors = Vec::with_capacity(self.0.len());
         for (lighting, hex) in self.0.iter() {
-            let mut ident = Ident::new("Srgba", Span::call_site());
-            let err_initializer = quote! { (); };
+            let mut ident = quote! {Srgba};
+            let err_initializer = quote! {()};
             let hex_trimmed = hex.trim_start_matches('#');
             let (initializer, comment) = match hex_trimmed.len() {
                 6 => {
@@ -67,7 +67,7 @@ impl TailwindColor {
                             let r = r as f32 / 255.0;
                             let g = g as f32 / 255.0;
                             let b = b as f32 / 255.0;
-                            let comment = comment(&format!("Original hex: {}", hex));
+                            let comment = gen_comment(&format!("Original hex: {}", hex));
 
                             let initializer = quote! {
                                 Srgba::rgb(#r, #g, #b)
@@ -76,8 +76,8 @@ impl TailwindColor {
                             (initializer, comment)
                         }
                         (r, g, b) => {
-                            ident = Ident::new("()", Span::call_site());
-                            let comment = comment(&format!(
+                            ident = quote! {()};
+                            let comment = gen_comment(&format!(
                                 "Error parsing hex {}\nr: {:?}\ng: {:?}\nb: {:?}",
                                 hex, r, g, b
                             ));
@@ -97,7 +97,7 @@ impl TailwindColor {
                             let g = g as f32 / 255.0;
                             let b = b as f32 / 255.0;
                             let a = a as f32 / 255.0;
-                            let comment = comment(&format!("Original hex: {}", hex));
+                            let comment = gen_comment(&format!("Original hex: {}", hex));
                             let initializer = quote! {
                                 Srgba::rgba(#r, #g, #b, #a)
                             };
@@ -106,8 +106,8 @@ impl TailwindColor {
                         }
                         (r, g, b, a) => {
                             //todo
-                            ident = Ident::new("()", Span::call_site());
-                            let comment = comment(&format!(
+                            ident = quote! {()};
+                            let comment = gen_comment(&format!(
                                 "Error parsing hex {}\nr: {:?}\ng: {:?}\nb: {:?}\na: {:?}",
                                 hex, r, g, b, a
                             ));
@@ -116,9 +116,10 @@ impl TailwindColor {
                     }
                 }
                 _ => {
-                    let comment = comment(&format!("Invalid hex length for this color: {}", hex));
-                    let initializer = quote! { (); };
-                    (initializer, comment)
+                    ident = quote! {()};
+                    let comment =
+                        gen_comment(&format!("Invalid hex length for this color: {}", hex));
+                    (err_initializer.clone(), comment)
                 }
             };
             let token_color =
@@ -129,7 +130,7 @@ impl TailwindColor {
     }
 }
 
-fn comment(doc: &str) -> Attribute {
+fn gen_comment(doc: &str) -> Attribute {
     Attribute {
         pound_token: Default::default(),
         style: syn::AttrStyle::Outer,

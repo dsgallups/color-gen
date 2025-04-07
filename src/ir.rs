@@ -7,7 +7,7 @@ pub struct TokenColor<'a> {
     ///e.g. 100, 200, etc.
     color_lighting: &'a str,
     /// Srgba
-    color_type: Ident,
+    color_type: TokenStream,
     comment: Attribute,
     initializer: TokenStream,
 }
@@ -15,7 +15,7 @@ impl<'a> TokenColor<'a> {
     pub fn new(
         color_name: &'a str,
         color_lighting: &'a str,
-        color_type: Ident,
+        color_type: TokenStream,
         comment: Attribute,
         initializer: TokenStream,
     ) -> Self {
