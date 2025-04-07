@@ -22,6 +22,7 @@ A schema that looks something like
         "900": "#f1d8d7",
         "NO_WORK": "#GGGGGG" // generated file will state this has failed
     },
+}
 ```
 should work.
 
@@ -31,4 +32,5 @@ should work.
 Please let me know what formats should be supported. Additionally, I've got some thoughts:
 
 - it could be nice to make strongly typed palettes with enumerations
--
+- Other schema types
+- correct parsing of JS Objects (most scheme generators return this, not JSON)
