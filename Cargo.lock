@@ -502,7 +502,7 @@ dependencies = [
 
 [[package]]
 name = "cargo-color-gen"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "bevy",
@@ -511,6 +511,7 @@ dependencies = [
  "prettyplease",
  "proc-macro2",
  "quote",
+ "regex",
  "serde",
  "serde_json",
  "syn",

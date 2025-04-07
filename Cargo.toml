@@ -1,6 +1,6 @@
 [package]
 name = "cargo-color-gen"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "A tool for generating color schemes"
 license = "MIT OR Apache-2.0"
@@ -19,6 +19,7 @@ syn = { version = "2.0", features = ["derive", "extra-traits"] }
 quote = "1.0"
 proc-macro2 = "1.0.94"
 prettyplease = "0.2.32"
+regex = "1.11.1"
 
 [dev-dependencies]
 bevy = { version = "0.15", default-features = false, features = ["bevy_color"] }

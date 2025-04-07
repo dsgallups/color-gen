@@ -6,3 +6,23 @@ const JSON: &str = r##"{"sandy_brown":{"100":"#462001","600":"#fdbc87","900":"#f
 fn parse_json() {
     generate(JSON.to_string()).unwrap();
 }
+
+const OBJ: &str = r##"{ 'sage': { DEFAULT: '#a3a380', 100: '#222218' }}"##;
+
+#[test]
+fn parse_obj() {
+    generate(OBJ.to_string()).unwrap();
+}
+
+#[test]
+fn parse_pretty_printed_object() {
+    let config = "
+        {
+            'sage': {
+                DEFAULT: '#a3a380',
+                100: '#222218'
+            }
+        }
+    ";
+    generate(config.to_string()).unwrap();
+}
