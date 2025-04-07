@@ -68,7 +68,7 @@ pub fn handle_args(args: Args) -> Result<()> {
 
 pub fn generate(input: String) -> Result<String> {
     let val: TailwindMap = serde_json::from_str(input.trim())?;
-
+    println!("here");
     let header = quote! {
         /// Generated using `color-gen` v0.1
 
@@ -82,6 +82,7 @@ pub fn generate(input: String) -> Result<String> {
 
     let output = quote! {
         #header
+
         #(#token_colors)*
     };
 

@@ -44,7 +44,7 @@ impl ToTokens for TokenColor<'_> {
         let initializer = &self.initializer;
         let output = quote! {
             #comment
-            const #variable_name: #ident = #initializer;
+            pub const #variable_name: #ident = #initializer;
         };
         tokens.extend(output);
     }

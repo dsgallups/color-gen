@@ -1,5 +1,5 @@
 use fnv::FnvHashMap;
-use proc_macro2::{Span, TokenStream};
+use proc_macro2::Span;
 use quote::quote;
 use serde::Deserialize;
 use syn::{Attribute, Expr, ExprLit, Ident, Lit, LitStr, Meta, MetaNameValue, Path};
@@ -25,7 +25,7 @@ impl TailwindMap {
 /// DEFAULT: "#483802"
 /// 100: "102383"
 #[derive(Deserialize)]
-pub struct TailwindColor(Vec<(String, String)>);
+pub struct TailwindColor(FnvHashMap<String, String>);
 // {
 //     #[serde(rename = "DEFAULT")]
 //     default: String,
@@ -107,7 +107,6 @@ impl TailwindColor {
                         (r, g, b, a) => {
                             //todo
                             ident = Ident::new("()", Span::call_site());
-                            let r_lit = quote!(=r);
                             let comment = comment(&format!(
                                 "Error parsing hex {}\nr: {:?}\ng: {:?}\nb: {:?}\na: {:?}",
                                 hex, r, g, b, a
