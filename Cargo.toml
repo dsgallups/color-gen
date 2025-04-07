@@ -4,6 +4,7 @@ version = "0.0.1"
 edition = "2024"
 description = "A tool for generating color schemes"
 license = "MIT OR Apache-2.0"
+repository = "https://github.com/dsgallups/color-gen"
 authors = ["Daniel Gallups <dsgallups@protonmail.com>"]
 keywords = ["cli", "cargo-subcommand"]
 readme = "README.md"
