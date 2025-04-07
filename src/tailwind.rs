@@ -1,6 +1,10 @@
+use std::sync::LazyLock;
+
+use anyhow::Result;
 use fnv::FnvHashMap;
 use proc_macro2::Span;
 use quote::quote;
+use regex::Regex;
 use serde::Deserialize;
 use syn::{Attribute, Expr, ExprLit, Ident, Lit, LitStr, Meta, MetaNameValue, Path};
 
@@ -18,36 +22,24 @@ impl TailwindMap {
 
         token_colors
     }
+    // we're going to have to manually parse an input since we may
+    // be accepting a js object, not json.
+    pub fn from_json(json: &str) -> Result<Self> {
+        static RE_SINGLE_QUOTED: LazyLock<Regex> =
+            LazyLock::new(|| Regex::new(r"'([#A-Za-z0-9_\-]+)'").unwrap());
+        static RE_UNQUOTED_KEY: LazyLock<Regex> =
+            LazyLock::new(|| Regex::new(r#"(?P<key>[A-Za-z0-9_\-]+)\s*:"#).unwrap());
+
+        let json = RE_SINGLE_QUOTED.replace_all(json, r#""$1""#);
+        let json = RE_UNQUOTED_KEY.replace_all(&json, r#""$key":"#);
+
+        let result = serde_json::from_str(&json)?;
+        Ok(result)
+    }
 }
 
-/// e.g.
-///
-/// DEFAULT: "#483802"
-/// 100: "102383"
 #[derive(Deserialize)]
 pub struct TailwindColor(FnvHashMap<String, String>);
-// {
-//     #[serde(rename = "DEFAULT")]
-//     default: String,
-//     #[serde(rename = "100")]
-//     l100: String,
-//     #[serde(rename = "200")]
-//     l200: String,
-//     #[serde(rename = "300")]
-//     l300: String,
-//     #[serde(rename = "400")]
-//     l400: String,
-//     #[serde(rename = "500")]
-//     l500: String,
-//     #[serde(rename = "600")]
-//     l600: String,
-//     #[serde(rename = "700")]
-//     l700: String,
-//     #[serde(rename = "800")]
-//     l800: String,
-//     #[serde(rename = "900")]
-//     l900: String,
-// }
 
 impl TailwindColor {
     pub fn to_token_colors<'a>(&'a self, color_name: &'a str) -> Vec<TokenColor<'a>> {

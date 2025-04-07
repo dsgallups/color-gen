@@ -1,5 +1,4 @@
 use cargo_color_gen::generate;
-use serde_json::json;
 
 const JSON: &str = r##"{"sandy_brown":{"100":"#462001","600":"#fdbc87","900":"#feeee1"},"redwood":{"700":"#d58a8792","800":"#e3b1af","900":"#f1d8d7","NO_WORK":"#GGGGGG", "NO_WORK_TWO":"#d"}}"##;
 
@@ -16,16 +15,7 @@ fn parse_obj() {
 }
 
 #[test]
-fn sandbox() {
-    // let config = "
-    //     {
-    //       // A traditional message.
-    //       message: 'hello world',
-
-    //       // A number for some reason.
-    //       n: 42,
-    //     }
-    // ";
+fn parse_pretty_printed_object() {
     let config = "
         {
             'sage': {
@@ -34,13 +24,5 @@ fn sandbox() {
             }
         }
     ";
-
-    assert_eq!(
-        json5::from_str::<serde_json::Value>(&config),
-        Ok(json!({
-            "message": "hello world",
-            "n": 42
-        }))
-    );
-    //let json: serde_json::Value = json5::from_str(OBJ).unwrap();
+    generate(config.to_string()).unwrap();
 }

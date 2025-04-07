@@ -19,7 +19,7 @@ syn = { version = "2.0", features = ["derive", "extra-traits"] }
 quote = "1.0"
 proc-macro2 = "1.0.94"
 prettyplease = "0.2.32"
-json5 = { git = "https://github.com/SabrinaJewson/json5.rs.git", branch = "key-serializer" }
+regex = "1.11.1"
 
 [dev-dependencies]
 bevy = { version = "0.15", default-features = false, features = ["bevy_color"] }
