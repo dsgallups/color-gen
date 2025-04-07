@@ -44,7 +44,7 @@ If there is a need for quickly switching between palettes (as opposed to the cur
 
 The above input will generate the following:
 
-```no_run, rust
+```rust
 /// Generated using `color-gen` v0.1
 use bevy::color::Srgba;
 ///Original hex: #462001
