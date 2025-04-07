@@ -1,5 +1,6 @@
 use anyhow::Result;
 use quote::quote;
+use serde_json::Value;
 use std::{
     fs::{self, File},
     io::{self, Write},
@@ -67,7 +68,10 @@ pub fn handle_args(args: Args) -> Result<()> {
 }
 
 pub fn generate(input: String) -> Result<String> {
-    let val: TailwindMap = serde_json::from_str(input.trim())?;
+    println!("generating\n\n");
+    let json_value: Value = json5::from_str(input.trim()).expect("couldn't parse json5");
+    println!("Json value parsed!\n\n");
+    let val: TailwindMap = serde_json::from_value(json_value)?;
     let header = quote! {
         /// Generated using `color-gen` v0.1
 
