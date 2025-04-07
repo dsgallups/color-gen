@@ -25,3 +25,5 @@ regex = "1.11.1"
 bevy = { version = "0.15", default-features = false, features = ["bevy_color"] }
 
 [package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }_{ target }{ archive-suffix }"
+pkg-fmt = "bin"
