@@ -1,4 +1,4 @@
-/// Generated using `color-gen` v0.1
+/// Generated using `color-gen` v0.2
 use bevy::color::Color;
 ///Original hex: #b7d2d2
 pub const DARK_CYAN_800: Color = Color::srgb(0.7176471f32, 0.8235294f32, 0.8235294f32);
