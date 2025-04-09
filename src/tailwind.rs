@@ -45,7 +45,7 @@ impl TailwindColor {
     pub fn to_token_colors<'a>(&'a self, color_name: &'a str) -> Vec<TokenColor<'a>> {
         let mut colors = Vec::with_capacity(self.0.len());
         for (lighting, hex) in self.0.iter() {
-            let mut ident = quote! {Srgba};
+            let mut ident = quote! {Color};
             let err_initializer = quote! {()};
             let hex_trimmed = hex.trim_start_matches('#');
             let (initializer, comment) = match hex_trimmed.len() {
@@ -62,7 +62,7 @@ impl TailwindColor {
                             let comment = gen_comment(&format!("Original hex: {}", hex));
 
                             let initializer = quote! {
-                                Srgba::rgb(#r, #g, #b)
+                                Color::srgb(#r, #g, #b)
                             };
 
                             (initializer, comment)
@@ -91,7 +91,7 @@ impl TailwindColor {
                             let a = a as f32 / 255.0;
                             let comment = gen_comment(&format!("Original hex: {}", hex));
                             let initializer = quote! {
-                                Srgba::rgba(#r, #g, #b, #a)
+                                Color::srgba(#r, #g, #b, #a)
                             };
 
                             (initializer, comment)
