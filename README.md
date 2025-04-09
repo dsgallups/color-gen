@@ -45,28 +45,32 @@ If there is a need for quickly switching between palettes (as opposed to the cur
 The above input will generate the following:
 
 ```rust
-/// Generated using `color-gen` v0.1
-use bevy::color::Srgba;
+/// Generated using `color-gen` v0.2
+use bevy::color::Color;
 ///Original hex: #462001
-pub const SANDY_BROWN_100: Srgba = Srgba::rgb(
+pub const SANDY_BROWN_100: Color = Color::srgb(
     0.27450982f32,
     0.1254902f32,
     0.003921569f32,
 );
 ///Original hex: #fdbc87
-pub const SANDY_BROWN_600: Srgba = Srgba::rgb(0.99215686f32, 0.7372549f32, 0.5294118f32);
+pub const SANDY_BROWN_600: Color = Color::srgb(
+    0.99215686f32,
+    0.7372549f32,
+    0.5294118f32,
+);
 ///Original hex: #feeee1
-pub const SANDY_BROWN_900: Srgba = Srgba::rgb(
+pub const SANDY_BROWN_900: Color = Color::srgb(
     0.99607843f32,
     0.93333334f32,
     0.88235295f32,
 );
 ///Original hex: #e3b1af
-pub const REDWOOD_800: Srgba = Srgba::rgb(0.8901961f32, 0.69411767f32, 0.6862745f32);
+pub const REDWOOD_800: Color = Color::srgb(0.8901961f32, 0.69411767f32, 0.6862745f32);
 ///Original hex: #f1d8d7
-pub const REDWOOD_900: Srgba = Srgba::rgb(0.94509804f32, 0.84705883f32, 0.84313726f32);
+pub const REDWOOD_900: Color = Color::srgb(0.94509804f32, 0.84705883f32, 0.84313726f32);
 ///Original hex: #d58a8792
-pub const REDWOOD_700: Srgba = Srgba::rgba(
+pub const REDWOOD_700: Color = Color::srgba(
     0.8352941f32,
     0.5411765f32,
     0.5294118f32,

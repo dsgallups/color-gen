@@ -70,7 +70,7 @@ pub fn handle_args(args: Args) -> Result<()> {
 pub fn generate(input: &str) -> Result<String> {
     let val = TailwindMap::from_json(input)?;
     let header = quote! {
-        /// Generated using `color-gen` v0.1
+        /// Generated using `color-gen` v0.2
 
         use bevy::color::Color;
     };
