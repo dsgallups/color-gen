@@ -71,7 +71,7 @@ pub fn generate(input: String) -> Result<String> {
     let header = quote! {
         /// Generated using `color-gen` v0.1
 
-        use bevy::color::Srgba;
+        use bevy::color::Color;
     };
 
     let token_colors = val.to_token_colors();
