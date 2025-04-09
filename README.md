@@ -1,3 +1,9 @@
+⚠️ This repository is no longer maintained ⚠️
+
+This project has been moved to [bevygen](https:://github.com/dsgallups/bevygen).
+
+If you would like to own this crate's name, please contact me!
+
 # Cargo Color Generator
 [<img alt="github" src="https://img.shields.io/badge/github-dsgallups/color-gen?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dsgallups/color-gen)
 [<img alt="crates.io" src="https://img.shields.io/crates/v/cargo-color-gen.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/cargo-color-gen)
