@@ -31,6 +31,12 @@ impl Args {
 ///
 /// If you don't need to open files/use stdin, then see [`generate`].
 pub fn handle_args(args: Args) -> Result<()> {
+    const RED: &str = "\x1b[31m";
+    const RESET: &str = "\x1b[0m";
+    eprintln!(
+        "{}⚠️ This CLI tool has been moved to the bevygen! ⚠️\n{}",
+        RED, RESET
+    );
     let input = match args.input_file {
         Some(file) => fs::read_to_string(file)?,
         None => loop {
