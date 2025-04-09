@@ -43,7 +43,7 @@ pub fn handle_args(args: Args) -> Result<()> {
             break input;
         },
     };
-    let result = generate(input)?;
+    let result = generate(&input)?;
 
     if let Some(output_path) = args.output_file {
         let Ok(mut of) = File::create(output_path) else {
@@ -66,8 +66,9 @@ pub fn handle_args(args: Args) -> Result<()> {
     Ok(())
 }
 
-pub fn generate(input: String) -> Result<String> {
-    let val = TailwindMap::from_json(&input)?;
+/// Takes in a JSObject or JSON and returns file contents
+pub fn generate(input: &str) -> Result<String> {
+    let val = TailwindMap::from_json(input)?;
     let header = quote! {
         /// Generated using `color-gen` v0.1
 
